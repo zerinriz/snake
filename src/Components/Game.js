@@ -29,7 +29,6 @@ const Game = () => {
     if (points > totalPoints) {
       setTotalPoints(points);
     }
-    setPoints(0);
   };
 
   const moveSnake = ({ keyCode }) => {
@@ -65,7 +64,7 @@ const Game = () => {
 
   const checkAppleCollision = (newSnake) => {
     if (newSnake[0][0] === apple[0] && newSnake[0][1] === apple[1]) {
-      setSpeed(speed - 2);
+      setSpeed(speed - 1);
       setPoints(points + 1);
       let newApple = createApple();
       while (checkCollision(newApple, newSnake)) {
@@ -92,6 +91,7 @@ const Game = () => {
     setDir([0, -1]);
     setSpeed(SPEED);
     setGameOver(false);
+    setPoints(0);
   };
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const Game = () => {
         width={`${CANVAS_SIZE[0]}px`}
         height={`${CANVAS_SIZE[1]}px`}
       />
-      <div>
+      <div className="popup">
         {gameOver && (
           <div className="gameover">GAME OVER! HighScore: {totalPoints}</div>
         )}
